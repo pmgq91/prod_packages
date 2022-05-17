@@ -62,9 +62,14 @@ def f_trash_file(v_file_title,v2_folder_id='root'):
     o_gdrive.CreateFile({'id':v_file_id}).Trash()
     
     
-########################################################################################################    
+########################################################################################################
 # Renombrar archivo
 def f_rename_file(v_file_id,v_new_title):
     o_file_to_rename=o_gdrive.auth.service.files().get(fileId=v_file_id).execute()
     o_file_to_rename['title']=v_new_title
     o_gdrive.auth.service.files().update(fileId=v_file_id,body=o_file_to_rename).execute()
+
+########################################################################################################
+# Copiar archivo
+def f_copy_file(v_origin_file_id,v_copied_file_name):
+    o_gdrive.auth.service.files().copy(fileId=v_origin_file_id,body={'title':v_copied_file_name}).execute()    
