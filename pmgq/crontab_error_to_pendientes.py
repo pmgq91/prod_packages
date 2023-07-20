@@ -10,9 +10,22 @@ def f_o_tab_error(p_path_service_account):
     v_row_error_entry = len(l_error_values) + 1
     return o_tab_error, v_row_error_entry
 
-def f_write_error(p_row_error_entry, p_error_message):
+def f_write_error(p_o_tab_error, p_row_error_entry, p_error_message):
     try:
         v_script_name = os.path.basename(__file__)
     except:
         v_script_name = '??jupyter_nb??'
-    o_tab_error.update('A' + str(p_row_error_entry), v_script_name + ': ' + p_error_message)
+    p_o_tab_error.update('A' + str(p_row_error_entry), v_script_name + ': ' + p_error_message)
+
+#USAGE:
+'''
+v_path_service_account = '{{path}}'
+
+o_tab_error, v_row_error_entry = lib_error.f_o_tab_error(p_path_service_account = v_path_service_account)
+
+lib_error.f_write_error(
+    p_o_tab_error = o_tab_error,
+    p_row_error_entry = v_row_error_entry,
+    p_error_message = 'hola'
+)
+'''
