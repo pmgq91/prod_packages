@@ -15,6 +15,8 @@ def f_write_error(p_o_tab_error, p_row_error_entry, p_script_and_error_message):
 
 #USAGE:
 '''
+from pmgq import crontab_error_to_pendientes as lib_error
+
 v_path_service_account = '{{path}}'
 
 o_tab_error, v_row_error_entry = lib_error.f_o_tab_error(p_path_service_account = v_path_service_account)
