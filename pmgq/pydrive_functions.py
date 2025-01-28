@@ -21,7 +21,7 @@ def f_auth_settings_file(
 ########################################################################################################    
 # Contenido en un folder
 def f_l_content(p_folder_id = 'root'):
-    l_content_raw = o_gdrive.ListFile({'q': "'"+v_folder_id+"' in parents and trashed=false"}).GetList()    
+    l_content_raw = o_gdrive.ListFile({'q': "'" + p_folder_id + "' in parents and trashed=false"}).GetList()    
     l_content = []    
     for i_content in l_content_raw:
         l_content.append({'id': i_content['id'], 'title': i_content['title'], 'mimeType': i_content['mimeType']})
@@ -52,7 +52,7 @@ def f_trash_file(p_file_title, p2_folder_id = 'root'):
     # Identifico id de archivo a eliminar
     for i_content in f_l_content(p_folder_id = p2_folder_id):
         if i_content['title'] == v_file_title:
-            v_file_id = content['id']
+            v_file_id = i_content['id']
             
     # Levantar error si el valor del id del archivo sigue siendo ''
     if v_file_id == '':
