@@ -51,7 +51,7 @@ def f_trash_file(p_file_title, p2_folder_id = 'root'):
     
     # Identifico id de archivo a eliminar
     for i_content in f_l_content(p_folder_id = p2_folder_id):
-        if i_content['title'] == v_file_title:
+        if i_content['title'] == p_file_title:
             v_file_id = i_content['id']
             
     # Levantar error si el valor del id del archivo sigue siendo ''
