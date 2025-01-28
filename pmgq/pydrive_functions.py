@@ -10,7 +10,7 @@ def f_auth_settings_file(
     p_pydrive_settings_file = 'pydrive_settings.yaml'
 ):
 
-    o_gauth = GoogleAuth(settings_file = 'f{p_folder_settings}{p_pydrive_settings_file}')
+    o_gauth = GoogleAuth(settings_file = f'{p_folder_settings}{p_pydrive_settings_file}')
     o_gauth.LocalWebserverAuth()
     
     # Creación de objeto para interactuar con Google Drive
