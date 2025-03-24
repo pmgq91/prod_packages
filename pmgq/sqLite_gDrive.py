@@ -32,7 +32,7 @@ def f_get_v_prod_db_file_id(p01_folder_id, p01_prod_DB_file_name):
     return v_prod_db_file_id
 
 
-def f_download_DB(p001_prod_DB_file_name, p001_folder_id, p001_backup_DB_file_name):
+def f_download_DB(p001_prod_DB_file_name, p001_folder_id, p001_backup_DB_file_name, p_recreate_backup = True):
     
     # Remove if exists a local copy of the prod DB 
     try:
@@ -65,15 +65,16 @@ def f_download_DB(p001_prod_DB_file_name, p001_folder_id, p001_backup_DB_file_na
 
     # Download prod DB into local cwd
     pyd.f_download_file(p_file_id = v_prod_db_file_id, p_output_file_name = p001_prod_DB_file_name)
-
-    # Delete previous backup DB in gDrive
-    pyd.f_trash_file(p_file_title = p001_backup_DB_file_name, p2_folder_id = p001_folder_id)
-
-    # Rename old prod gDrive DB as backup DB
-    pyd.f_rename_file(p_file_id = v_prod_db_file_id, p_new_title = p001_backup_DB_file_name)
-
     # Log messages
-    print('Successfully downloaded gDrive prod DB to local, and created backup DB in gDrive.')
+    print('Successfully downloaded gDrive prod DB to local.')
+
+    if p_recreate_backup:
+        # Delete previous backup DB in gDrive
+        pyd.f_trash_file(p_file_title = p001_backup_DB_file_name, p2_folder_id = p001_folder_id)
+        # Rename old prod gDrive DB as backup DB
+        pyd.f_rename_file(p_file_id = v_prod_db_file_id, p_new_title = p001_backup_DB_file_name)
+        # Log messages
+        print('Successfully recreated backup DB in gDrive based in current gDrive prod DB.')
 
 
 def f_upload_DB(p001_prod_DB_file_name, p001_folder_id):
